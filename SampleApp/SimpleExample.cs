@@ -237,10 +237,8 @@ namespace SampleApp
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			TimeCounter.Start();
 			_tree.FullUpdate();
 			//_model.Root.Nodes[0].Text = "Child";
-			button1.Text = TimeCounter.Finish().ToString();
 		}
 
 		private void button2_Click(object sender, EventArgs e)

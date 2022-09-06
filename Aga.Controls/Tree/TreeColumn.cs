@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
@@ -239,8 +237,6 @@ namespace Aga.Controls.Tree
 
 		protected Size GetLabelSize(DrawContext context, string label)
 		{
-			PerformanceAnalyzer.Start("GetLabelSize");
-
 			Font font = GetDrawingFont(context, label);
 			Size s = Size.Empty;
 			if (UseCompatibleTextRendering)
@@ -250,8 +246,6 @@ namespace Aga.Controls.Tree
 				SizeF sf = context.Graphics.MeasureString(label, font);
 				s = new Size((int)Math.Ceiling(sf.Width), (int)Math.Ceiling(sf.Height));
 			}
-
-			PerformanceAnalyzer.Finish("GetLabelSize");
 
 			if (!s.IsEmpty)
 				return s;

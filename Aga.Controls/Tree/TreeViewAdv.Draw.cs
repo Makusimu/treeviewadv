@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using Aga.Controls.Tree.NodeControls;
@@ -67,9 +66,6 @@ namespace Aga.Controls.Tree
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			BeginPerformanceCount();
-			PerformanceAnalyzer.Start("OnPaint");
-
 			DrawContext context = new DrawContext();
 			context.Graphics = e.Graphics;
 			context.Font = this.Font;
@@ -113,9 +109,6 @@ namespace Aga.Controls.Tree
 
 			if (DragMode && _dragBitmap != null)
 				e.Graphics.DrawImage(_dragBitmap, PointToClient(MousePosition));
-
-			PerformanceAnalyzer.Finish("OnPaint");
-			EndPerformanceCount(e);
 		}
 
 		private void DrawRow(PaintEventArgs e, ref DrawContext context, int row, Rectangle rowRect)
@@ -183,7 +176,6 @@ namespace Aga.Controls.Tree
 
 		private void DrawColumnHeaders(Graphics gr)
 		{
-			PerformanceAnalyzer.Start("DrawColumnHeaders");
 			ReorderColumnState reorder = Input as ReorderColumnState;
 			int x = 0;
 			if (Columns.Count > 0)
@@ -216,7 +208,6 @@ namespace Aga.Controls.Tree
 					TreeColumn.DrawDropMark(gr, new Rectangle(x, 0, 0, ColumnHeaderHeight));
 				gr.DrawImage(reorder.GhostImage, new Point(reorder.Location.X +  + reorder.DragOffset, reorder.Location.Y));
 			}
-			PerformanceAnalyzer.Finish("DrawColumnHeaders");
 		}
 
 		public void DrawNode(TreeNodeAdv node, DrawContext context)
@@ -287,31 +278,5 @@ namespace Aga.Controls.Tree
 
 			gr.ResetClip();
 		}
-
-		#region Performance
-
-		private double _totalTime;
-		private int _paintCount;
-
-		[Conditional("PERF_TEST")]
-		private void BeginPerformanceCount()
-		{
-			_paintCount++;
-			TimeCounter.Start();
-		}
-
-		[Conditional("PERF_TEST")]
-		private void EndPerformanceCount(PaintEventArgs e)
-		{
-			double time = TimeCounter.Finish();
-			_totalTime += time;
-			string debugText = string.Format("FPS {0:0.0}; Avg. FPS {1:0.0}",
-				1 / time, 1 / (_totalTime / _paintCount));
-			e.Graphics.FillRectangle(Brushes.White, new Rectangle(DisplayRectangle.Width - 150, DisplayRectangle.Height - 20, 150, 20));
-			e.Graphics.DrawString(debugText, Control.DefaultFont, Brushes.Gray,
-				new PointF(DisplayRectangle.Width - 150, DisplayRectangle.Height - 20));
-		}
-		#endregion
-
 	}
 }

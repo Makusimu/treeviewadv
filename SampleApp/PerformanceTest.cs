@@ -22,14 +22,11 @@ namespace SampleApp
 
 		private void _load_Click(object sender, EventArgs e)
 		{
-			label3.Text = "Working";
 			Application.DoEvents();
 
 			_treeView.Model = null;
 			_model = null;
 			GC.Collect(3);
-
-			TimeCounter.Start();
 
 			_model = new TreeModel();
 			for (int i = 0; i < 10; i++)
@@ -44,8 +41,6 @@ namespace SampleApp
 			}
 
 			_treeView.Model = _model;
-
-			label3.Text = TimeCounter.Finish().ToString();
 		}
 
 		private void _expand_Click(object sender, EventArgs e)
@@ -55,14 +50,11 @@ namespace SampleApp
 				label4.Text = "Working";
 				Application.DoEvents();
 
-				TimeCounter.Start();
-
 				if (_treeView.Root.Children[0].IsExpanded)
 					_treeView.CollapseAll();
 				else
 					_treeView.ExpandAll();
 
-				label4.Text = TimeCounter.Finish().ToString();
 			}
 		}
 
@@ -73,7 +65,6 @@ namespace SampleApp
 
 			_treeView2.Nodes.Clear();
 
-			TimeCounter.Start();
 			_treeView2.BeginUpdate();
 
 			List<TreeNode> list = new List<TreeNode>();
@@ -90,7 +81,6 @@ namespace SampleApp
 			_treeView2.Nodes.AddRange(list.ToArray());
 
 			_treeView2.EndUpdate();
-			label5.Text = TimeCounter.Finish().ToString();
 		}
 
 		private void _expand2_Click(object sender, EventArgs e)
@@ -100,16 +90,12 @@ namespace SampleApp
 				label6.Text = "Working";
 				Application.DoEvents();
 
-				TimeCounter.Start();
-
 				//treeView1.BeginUpdate();
 				if (_treeView2.Nodes[0].IsExpanded)
 					_treeView2.CollapseAll();
 				else
 					_treeView2.ExpandAll();
 				//treeView1.EndUpdate();
-
-				label6.Text = TimeCounter.Finish().ToString();
 			}
 		}
 	}

@@ -34,7 +34,6 @@ namespace SampleApp
 			this._treeView2 = new System.Windows.Forms.TreeView();
 			this.label2 = new System.Windows.Forms.Label();
 			this._expand2 = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
 			this._expand = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
@@ -98,15 +97,6 @@ namespace SampleApp
 			this._expand2.Text = "Expand/Collapse";
 			this._expand2.UseVisualStyleBackColor = true;
 			this._expand2.Click += new System.EventHandler(this._expand2_Click);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(116, 337);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(35, 13);
-			this.label3.TabIndex = 8;
-			this.label3.Text = "label3";
 			// 
 			// _expand
 			// 
@@ -178,7 +168,6 @@ namespace SampleApp
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this._expand);
-			this.Controls.Add(this.label3);
 			this.Controls.Add(this._expand2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this._treeView2);
@@ -203,7 +192,6 @@ namespace SampleApp
 		private System.Windows.Forms.TreeView _treeView2;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button _expand2;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button _expand;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;

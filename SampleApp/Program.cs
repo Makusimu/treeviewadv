@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using Aga.Controls;
 
 namespace SampleApp
 {
@@ -15,7 +14,6 @@ namespace SampleApp
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
-			Console.WriteLine(PerformanceAnalyzer.GenerateReport("OnPaint"));
 		}
 	}
 }
